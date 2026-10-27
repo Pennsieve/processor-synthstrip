@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://schemas.pennsieve.io/app-manifest/v1.json
+schemaVersion: "1.0"
+application:
+  name: SynthStrip Skull Stripping
+  description: >-
+    Skull-strips T1-weighted brain MRI with SynthStrip 1.8 (FreeSurfer), a
+    learning-based tool that works on images of any contrast and resolution
+    (Hoopes et al. 2022, NeuroImage 260:119474). Takes one or more
+    <sub>_T1w.nii.gz images and writes, per subject, the brain-extracted image
+    (brain/<sub>_desc-brain_T1w.nii.gz) and the binary brain mask
+    (mask/<sub>_desc-brain_mask.nii.gz), plus the brain volume in mL in
+    provenance.json. Step 2 of the Clinical Brain MRI Volumetrics workflow.
+  type: processor
+  tags: [neuroimaging, mri, nifti, synthstrip, freesurfer, skull-stripping]
+runtime:
+  cpu: 2048
+  memory: 8192
+  computeTypes: [standard]
+  timeoutSeconds: 1800
+parameters:
+  - name: NO_CSF
+    type: boolean
+    description: Exclude CSF from the brain boundary (uses SynthStrip's no-CSF model).
+    defaultValue: false
+  - name: BORDER_MM
+    type: integer
+    description: Mask border in mm (mri_synthstrip -b); larger values keep more tissue around the brain.
+    defaultValue: 1
+  - name: THREADS
+    type: integer
+    description: PyTorch CPU threads for the model (mri_synthstrip -t).
+    defaultValue: 4
+# A single input, so its files arrive at the root of INPUT_DIR (possibly in
+# subfolders); on a node with linked inputs they may be in INPUT_DIR/t1w/
+# instead, and the app looks there first. Files are picked by BIDS suffix
+# (*_T1w.nii.gz / *_T1w.nii).
+inputs:
+  - name: t1w
+    description: T1-weighted images, one per subject, named <sub>_T1w.nii.gz (BIDS suffix T1w).
+    mediaTypes: [application/x-nifti-gz, application/x-nifti]
+    required: true
+# Two outputs, each in its own folder under OUTPUT_DIR.
+outputs:
+  - name: brain
+    description: Skull-stripped images, brain/<sub>_desc-brain_T1w.nii.gz, plus provenance.json.
+    mediaTypes: [application/x-nifti-gz, application/json]
+  - name: mask
+    description: Binary brain masks, mask/<sub>_desc-brain_mask.nii.gz.
+    mediaTypes: [application/x-nifti-gz]

@@ -1,0 +1,10 @@
+# local data for running the processor (inputs fetched by sample-input/fetch-sample.sh, outputs)
+data/
+*.nii
+*.nii.gz
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+.idea/
