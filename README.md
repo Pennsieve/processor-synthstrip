@@ -57,7 +57,7 @@ mri_synthstrip -i <in>_T1w.nii.gz -o brain/<sub>_desc-brain_T1w.nii.gz -m mask/<
 
 ## Runtime
 
-`computeTypes: [standard]` only (container, no Lambda): 2 vCPU, 8 GiB,
+`computeTypes: [standard]` only (container, no Lambda): 2 vCPU, 12 GiB,
 30 min timeout. One 1 mm T1w takes under a minute on an x86 machine and
 roughly 1 GB of RAM; see the measured numbers at the end of this file.
 
