@@ -14,7 +14,7 @@ application:
   tags: [neuroimaging, mri, nifti, synthstrip, freesurfer, skull-stripping]
 runtime:
   cpu: 2048
-  memory: 8192
+  memory: 12288
   computeTypes: [standard]
   timeoutSeconds: 1800
 parameters:
