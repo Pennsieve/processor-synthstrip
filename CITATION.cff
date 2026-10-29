@@ -1,0 +1,37 @@
+cff-version: "1.2.0"
+message: If you use this app, please cite it and the works it builds on, listed under references.
+type: software
+title: SynthStrip Skull Stripping
+abstract: Skull-strips T1-weighted brain MRI with SynthStrip (FreeSurfer), a learning-based tool that
+  works on images of any contrast and resolution. Writes the brain-extracted image and binary brain mask
+  per subject.
+authors:
+- name: Pennsieve (University of Pennsylvania)
+repository-code: https://github.com/pennsieve-apps/processor-synthstrip
+license: Apache-2.0
+keywords:
+- neuroimaging
+- mri
+- nifti
+- synthstrip
+- freesurfer
+- skull-stripping
+references:
+- type: article
+  title: 'SynthStrip: skull-stripping for any brain image'
+  authors:
+  - family-names: Hoopes
+    given-names: Andrew
+  - family-names: Mora
+    given-names: Jocelyn S.
+  - family-names: Dalca
+    given-names: Adrian V.
+  - family-names: Fischl
+    given-names: Bruce
+  - family-names: Hoffmann
+    given-names: Malte
+  year: 2022
+  journal: NeuroImage
+  volume: 260
+  start: '119474'
+  doi: 10.1016/j.neuroimage.2022.119474
